@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func gdate() string {
+func Tdate() string {
 	now := time.LocalTime()
 	now.Hour = 24
 	now.Minute = 60
@@ -22,7 +22,7 @@ func gdate() string {
 	return strconv.Itoa64(day) + ", " + strconv.Itoa64(now.Year)
 }
 
-func gtime() string {
+func Ttime() string {
 	now := time.LocalTime()
 	var tsec int64
 	{
