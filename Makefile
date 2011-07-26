@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=gtime
+TARG=ttime
 GOFILES=\
 	*.go\
 
