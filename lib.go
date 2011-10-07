@@ -38,5 +38,13 @@ func Ttime() string {
 	minute := int64((float64(tsec) / (float64(ms) / 10)) * 100)
 	tsec -= int64((ms / 1000) * minute)
 	second := int64((float64(tsec) / (float64(ms) / 100)) * 10000)
-	return strconv.Itoa64(hour) + ":" + strconv.Itoa64(minute) + ":" + strconv.Itoa64(second)
+	return format(hour, 1) + ":" + format(minute, 2) + ":" + format(second, 3)
+}
+
+func format(val int64, desiredLen int) string {
+	str := strconv.Itoa64(val)
+	for len(str) < desiredLen {
+		str = "0" + str
+	}
+	return str
 }
