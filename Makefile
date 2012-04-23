@@ -1,10 +1,6 @@
-include $(GOROOT)/src/Make.inc
-
-TARG=ttime
-GOFILES=\
-	*.go\
-
-include $(GOROOT)/src/Make.pkg
-
+build:
+	go build -o ttime
+run: build
+	./ttime
 fmt:
-	gofmt -w $GOFILES
+	go fmt

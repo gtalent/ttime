@@ -6,31 +6,20 @@ import (
 )
 
 func Tdate() string {
-	now := time.LocalTime()
-	now.Hour = 24
-	now.Minute = 60
-	now.Second = 60
+	n := time.Now()
+	n = time.Date(n.Year(), n.Month(), n.Day(), 24, 60, 60, 0, time.Local)
 	var ny time.Time
-	ny.Year = now.Year
-	ny.Month = 1
-	ny.Day = 1
-	ny.Hour = 0
-	ny.Minute = 0
-	ny.Second = 0
-	ny.Zone = "CST"
-	day := (now.Seconds() - ny.Seconds()) / 86400
-	return strconv.Itoa64(day) + ", " + strconv.Itoa64(now.Year)
+	ny = time.Date(n.Year(), 1, 1, 0, 0, 0, 0, time.Local)
+	day := (n.Unix() - ny.Unix()) / 86400
+	return strconv.FormatInt(day, 10) + ", " + strconv.Itoa(n.Year())
 }
 
 func Ttime() string {
-	now := time.LocalTime()
+	n := time.Now()
 	var tsec int64
 	{
-		var t time.Time = *now
-		t.Hour = 0
-		t.Minute = 0
-		t.Second = 0
-		tsec = (now.Seconds() - t.Seconds()) * 1000
+		t := time.Date(n.Year(), n.Month(), n.Day(), 0, 0, 0, 0, time.Local)
+		tsec = (n.Unix() - t.Unix()) * 1000
 	}
 	ms := int64(86400 * 1000)
 	hour := int64((float64(tsec) / float64(ms)) * 10)
@@ -42,7 +31,7 @@ func Ttime() string {
 }
 
 func format(val int64, desiredLen int) string {
-	str := strconv.Itoa64(val)
+	str := strconv.FormatInt(val, 10)
 	for len(str) < desiredLen {
 		str = "0" + str
 	}
