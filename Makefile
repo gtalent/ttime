@@ -1,5 +1,5 @@
 build:
-	go build -o ttime
+	go build -o main
 run: build
 	./ttime
 fmt:
