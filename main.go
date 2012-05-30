@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gtalent/ttime"
+	"github.com/gtalent/ttime/ttime"
 )
 
 func main() {
